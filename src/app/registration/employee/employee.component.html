@@ -5,7 +5,7 @@
   aria-labelledby="home-tab"
 >
   <h3 class="register-heading">Apply as a Employee</h3>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
     <div class="row register-form">
       <div class="col-md-6">
         <div class="form-group">
@@ -14,23 +14,47 @@
             class="form-control"
             placeholder="First Name *"
             value=""
+            required
+            maxlength="10"
+            minlength="5"
+            formControlName="firstname"
           />
+          @if(isSubmitted && myForm.get('firstname')?.getError('required')){
+          <span class="text-danger">*Firstname is required</span>
+          } @if(isSubmitted && myForm.get('firstname')?.getError('minlength')){
+          <span class="text-danger">*Minimum length shall be 5</span>
+          } @if(isSubmitted && myForm.get('firstname')?.getError('maxlength')){
+          <span class="text-danger">*Maximum length shall be 10</span>
+          }
         </div>
         <div class="form-group">
           <input
             type="text"
+            formControlName="lastname"
             class="form-control"
             placeholder="Last Name *"
             value=""
           />
+          @if(isSubmitted && myForm.get('firstname')?.getError('required')){
+          <span class="text-danger">*Lastname is required</span>
+          } @if(isSubmitted && myForm.get('firstname')?.getError('minlength')){
+          <span class="text-danger">*Minimum length shall be 5</span>
+          } @if(isSubmitted && myForm.get('firstname')?.getError('maxlength')){
+          <span class="text-danger">*Maximum length shall be 10</span>
+          }
         </div>
         <div class="form-group">
           <input
             type="password"
+            formControlName="password"
             class="form-control"
             placeholder="Password *"
             value=""
-          />
+          />@if(isSubmitted && myForm.get('password')?.getError('pattern')){
+          <span class="text-danger">*Weak Password</span>
+          } @if(isSubmitted && myForm.get('email')?.getError('required')){
+          <span class="text-danger">*Password is required</span>
+          }
         </div>
         <div class="form-group">
           <input
@@ -38,7 +62,22 @@
             class="form-control"
             placeholder="Confirm Password *"
             value=""
+            formControlName="confirmPassword"
           />
+
+          <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+            <span
+              class="text-danger"
+              *ngIf="confirmPassword?.hasError('required')"
+              >Confirm password is required</span
+            >
+
+            <span
+              class="text-danger"
+              *ngIf="myForm.hasError('passwordsMismatch')"
+              >Passwords do not match</span
+            >
+          </div>
         </div>
         <div class="form-group">
           <div class="maxl">
@@ -60,18 +99,29 @@
             class="form-control"
             placeholder="Your Email *"
             value=""
+            formControlName="email"
           />
+          @if(isSubmitted && myForm.get('email')?.getError('required')){
+          <span class="text-danger">*Email is required</span>
+          }
         </div>
         <div class="form-group">
           <input
             type="text"
             minlength="10"
-            maxlength="10"
+            maxlength="12"
             name="txtEmpPhone"
+            formControlName="number"
             class="form-control"
-            placeholder="Your Phone *"
+            placeholder="Your Phone *
+            "
             value=""
           />
+          @if(isSubmitted && myForm.get('number')?.getError('required')){
+          <span class="text-danger">*Number is required</span>
+          } @if(isSubmitted && myForm.get('number')?.getError('minlength')){
+          <span class="text-danger">*Incorrect number </span>
+          }
         </div>
         <div class="form-group">
           <select class="form-control">
