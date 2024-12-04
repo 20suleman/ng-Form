@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
-import { EmployeeComponent } from './employee/employee.component';
-import { HirerComponent } from './hirer/hirer.component';
+import { EmployeeComponent } from '../employee/employee.component';
+import { HirerComponent } from '../hirer/hirer.component';
 @Component({
   selector: 'app-registration',
   standalone: true,

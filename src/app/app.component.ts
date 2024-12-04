@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationComponent } from './registration/registrations/registration.component';
 
 @Component({
   selector: 'app-root',
